@@ -1,0 +1,176 @@
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+  <meta charset="UTF-8">  
+  <title>Dariku Untukmu 💔</title>  
+  <style>  
+    body {  
+      margin: 0;  
+      padding: 0;  
+      background-color: #1f1f2e;  
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+      display: flex;  
+      justify-content: center;  
+      align-items: center;  
+      height: 100vh;  
+      overflow: hidden;  
+      position: relative;  
+    }  #loveRain span {  
+  position: absolute;  
+  top: -10px;  
+  color: #8888aa;  
+  animation: fall linear infinite;  
+  z-index: 0;  
+}  
+
+@keyframes fall {  
+  to {  
+    transform: translateY(100vh);  
+    opacity: 0;  
+  }  
+}  
+
+#container {  
+  text-align: center;  
+  background-color: #2a2a3d;  
+  padding: 50px;  
+  border-radius: 30px;  
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);  
+  max-width: 800px;  
+  z-index: 1;  
+  color: white;  
+}  
+
+img {  
+  width: 200px;  
+  height: 200px;  
+  object-fit: cover;  
+  border-radius: 20px;  
+  border: 4px solid #555;  
+  margin-bottom: 30px;  
+  filter: grayscale(100%);  
+}  
+
+#judul {  
+  font-size: 28px;  
+  color: #ccccee;  
+  margin-bottom: 20px;  
+  font-weight: normal;  
+  font-style: italic;  
+}  
+
+button {  
+  background-color: #444466;  
+  border: none;  
+  padding: 20px 50px;  
+  font-size: 22px;  
+  color: white;  
+  border-radius: 40px;  
+  cursor: pointer;  
+  transition: background-color 0.3s ease;  
+}  
+
+button:hover {  
+  background-color: #666688;  
+}  
+
+#letter {  
+  display: none;  
+  margin-top: 40px;  
+  font-size: 20px;  
+  color: #ddddff;  
+  text-align: left;  
+  max-width: 700px;  
+  margin-left: auto;  
+  margin-right: auto;  
+  white-space: pre-wrap;  
+  line-height: 1.8;  
+  opacity: 0;  
+  transform: translateY(50px);  
+  animation: slideUp 1s ease forwards;  
+}  
+
+@keyframes slideUp {  
+  to {  
+    opacity: 1;  
+    transform: translateY(0);  
+  }  
+}  
+
+audio {  
+  display: none;  
+}
+
+  </style>  
+</head>  
+<body>  <div id="loveRain"></div>  <div id="container">  
+  <!-- Tambahkan foto kenangan -->  
+  <img src="fotokita.jpg" alt="Foto kenangan">    <!-- Tambahkan kalimat kangen -->    <h1 id="judul">Maaf Aku kangen☹️...</h1>    <!-- Tombol untuk membuka surat -->  <button onclick="showLetter()">buka surat 💔</button>
+
+  <!-- Tempat surat muncul -->    <div id="letter"></div>  
+</div>  <!-- Musik sedih autoplay (pastikan file "backsound.mp3" tersedia) -->  <audio id="backsound" autoplay loop>  
+  <source src="Akhirtakbahagia.mp3" type="audio/mpeg">  
+</audio>  <script>  
+  const loveContainer = document.getElementById("loveRain");  
+  
+  function createHeart() {  
+    const heart = document.createElement("span");  
+    heart.innerHTML = "🙁";  
+    heart.style.left = Math.random() * 100 + "vw";  
+    heart.style.fontSize = Math.random() * 30 + 20 + "px";  
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";  
+    loveContainer.appendChild(heart);  
+  
+    setTimeout(() => {  
+      heart.remove();  
+    }, 6000);  
+  }  
+  
+  setInterval(createHeart, 180);  
+  
+  function showLetter() {  
+    document.querySelector("button").style.display = "none";  
+    const letterDiv = document.getElementById("letter");  
+    letterDiv.style.display = "block";  
+    letterDiv.style.animation = "slideUp 1s ease forwards";  
+  
+    const audio = document.getElementById("backsound");  
+    audio.volume = 0.4; // pelan  
+    audio.play().catch(() => {}); // menghindari error autoplay  
+  
+    const text = `Hai Maaf ganggu...  
+  
+Aku tahu, mungkin kamu sudah tidak lagi memikirkan ini.  
+Tapi disini aku masih berusaha buat lupain kamu, aku disini  
+masih selalu bertanya-tanya tentang kabarmu, emang si kelihatan aneh  
+tapi kamu harus tau rasa ini sulit untuk hilangnya  
+  
+Terima kasih atas segala kenangan, tawa, dan air mata.  
+Kita pernah punya 'kita'  
+meski akhirnya harus jadi 'dulu'.  
+  
+Maaf kalau aku banyak salah,  
+maaf kalau cinta ini malah bikin kamu lelah.  
+Maaf selalu minta Maaf  
+  
+Sekarang, aku belajar untuk merelakan...  
+Bukan karena aku ingin, tapi karena aku harus.  
+  
+Semoga kamu bahagia... meski bukan denganku.  
+  
+— dari seseorang yang dulu pernah sangat mencintaimu.`;  
+  
+    let index = 0;  
+    letterDiv.innerHTML = "";  
+  
+    function typeWriter() {  
+      if (index < text.length) {  
+        letterDiv.innerHTML += text.charAt(index);  
+        index++;  
+        setTimeout(typeWriter, 40);  
+      }  
+    }  
+  
+    typeWriter();  
+  }  
+</script>  </body>  
+</html>
